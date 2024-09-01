@@ -1,6 +1,9 @@
 package org.com.ms.message_producer.Controllers;
 
+import org.com.ms.message_producer.Services.MessageService;
+import org.com.ms.message_producer.Services.RabbitMQService;
 import org.com.ms.message_producer.models.Dtos.MessageDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,10 +17,14 @@ import java.util.List;
 @RequestMapping("/api")
 public class MessageController {
 
+    MessageService messageService;
+    RabbitMQService rabbitMQService;
+
     @PostMapping("/send-message")
     public ResponseEntity<MessageDTO> sendMessage(@RequestBody MessageDTO messageDTO){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(messageDTO);
+        rabbitMQService.publishMessage(messageDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(messageService.sendAMessage(messageDTO));
     }
 
 

@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class messageService {
+public class RabbitMQService {
 
 //Classe service onde é realizado o envio da mensagem.
 
 
     final RabbitTemplate rabbitTemplate;
 
-    public messageService(RabbitTemplate rabbitTemplate) {
+    public RabbitMQService(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 
@@ -22,12 +22,11 @@ public class messageService {
 
     //Método para converter e enviar a mensagem
     public void publishMessage(MessageDTO message){
-        var messageDto = new MessageDTO();
-        messageDto.setMessage(message.getMessage());
-        messageDto.setUuid(message.getUuid());
-        messageDto.setLocalDateTime(message.getLocalDateTime());
+        message.setMessage(message.getMessage());
+        message.setUuid(message.getUuid());
+        message.setLocalDateTime(message.getLocalDateTime());
 
-        rabbitTemplate.convertAndSend(routingKey,messageDto);
+        rabbitTemplate.convertAndSend("",routingKey,message);
     }
 
 }
