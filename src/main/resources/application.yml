@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092  # Endereço dos servidores Kafka
+    topics:
+      messaging:
+        request:
+          topic: "messaing.request.topic.v1"
