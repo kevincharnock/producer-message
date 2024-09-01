@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:
+  rabbit:
+    mq:
+      addresses: amqps://iqtnxkzg:02ozc0PY2bA-TwYhyrmf8zUM05tZ9bjL@jackal.rmq.cloudamqp.com/iqtnxkzg
+
+broker:
+  queue:
+    message:
+      name: default.message
