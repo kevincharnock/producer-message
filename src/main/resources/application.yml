@@ -2,11 +2,12 @@ server:
   port: 8081
 
 spring:
-  rabbit:
-    mq:
-      addresses: amqps://iqtnxkzg:02ozc0PY2bA-TwYhyrmf8zUM05tZ9bjL@jackal.rmq.cloudamqp.com/iqtnxkzg
+  rabbitmq:
+    host: localhost
+    port: 5672
+    addresses: amqps://iqtnxkzg:02ozc0PY2bA-TwYhyrmf8zUM05tZ9bjL@jackal.rmq.cloudamqp.com/iqtnxkzg
 
 broker:
   queue:
     message:
-      name: default.message
+      name: default_message

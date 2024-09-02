@@ -1,7 +1,9 @@
 package org.com.ms.message_producer.Services;
 
+import lombok.Builder;
 import org.com.ms.message_producer.models.Dtos.MessageDTO;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +13,9 @@ public class RabbitMQService {
 //Classe service onde é realizado o envio da mensagem.
 
 
-    final RabbitTemplate rabbitTemplate;
+    private final RabbitTemplate rabbitTemplate;
 
+    @Autowired
     public RabbitMQService(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
@@ -21,11 +24,8 @@ public class RabbitMQService {
     private String routingKey;
 
     //Método para converter e enviar a mensagem
-    public void publishMessage(MessageDTO message){
-        message.setMessage(message.getMessage());
-        message.setUuid(message.getUuid());
-        message.setLocalDateTime(message.getLocalDateTime());
 
+    public void publishMessage(MessageDTO message){
         rabbitTemplate.convertAndSend("",routingKey,message);
     }
 
