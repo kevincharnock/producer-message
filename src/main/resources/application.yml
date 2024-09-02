@@ -5,7 +5,7 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    addresses: amqps://iqtnxkzg:02ozc0PY2bA-TwYhyrmf8zUM05tZ9bjL@jackal.rmq.cloudamqp.com/iqtnxkzg
+    addresses: amqps://**********:*******-TwYhyrmf8zUM05tZ9bjL@jackal.rmq.cloudamqp.com/******
 
 broker:
   queue:
